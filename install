@@ -1,0 +1,133 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+
+print(
+    "\n"
+    "Warning!\n"
+    "This script is user-made and has been done to ease\n"
+    "the installation process of Arch Linux (especially for the creator).\n"
+    "Think twice before typing something!\n"
+    "The script cannot fix mistakes you make."
+)
+
+print(
+    "\n"
+    "You should run this script right after you did “arch-chroot”."
+)
+
+print(
+    "\n"
+    "Made by AskarBink."
+)
+
+while True:
+    timezone = input(
+        "\n"
+        "Timezone:\n"
+        "(You can watch them in /usr/share/zoneinfo)\n"
+    ).strip()
+
+    if not os.path.isfile(f'/usr/share/zoneinfo/{timezone}'):
+        print("Incorrect value! Try again…")
+        continue
+
+    print(f"Selected: {timezone}")
+    break
+
+while True:
+    dual_boot = input(
+        "\n"
+        "Dual boot with Windows? [y/N]: "
+    ).strip().lower()
+
+    if dual_boot in ('n', 'no', ''):
+        dual_boot = 'No'
+
+    elif dual_boot in ('y', 'yes'):
+        dual_boot = 'Yes'
+
+    else:
+        print("Incorrect value! Try again…")
+        continue
+
+    print(f"Selected: {dual_boot}")
+    break
+
+while True:
+    desktop = input(
+        "\n"
+        "Desktop:\n"
+        "1) None\n"
+        "2) i3\n"
+        "3) GNOME\n"
+        "4) KDE Plasma\n"
+        "Enter a number (default=1): "
+    ).strip()
+
+    if desktop in ('1', ''):
+        desktop = 'i3'
+
+    elif desktop == '2':
+        desktop = 'GNOME'
+
+    elif desktop == '3':
+        desktop = 'KDE Plasma'
+
+    else:
+        print("Incorrect value! Try again…")
+        continue
+
+    print(f"Selected: {desktop}")
+    break
+
+hostname = input(
+    "\n"
+    "Hostname: "
+)
+
+username = input(
+    "\n"
+    "Username: "
+)
+
+
+print(
+    "\n"
+    "Overview:\n"
+    f"Timezone: {timezone}\n"
+    f"Dual boot: {dual_boot}\n"
+    f"Desktop: {desktop}\n"
+
+    f"Hostname: {hostname}\n"
+    f"Username: {username}\n"
+)
+
+
+while True:
+    confirmation = input(
+        "Proceed with installation? [Y/n]: "
+    ).strip().lower()
+
+    if confirmation in ('y', 'yes'):
+        print(
+            "\n"
+            "Starting installation!"
+        )
+
+    elif confirmation in ('n', 'no'):
+        print(
+            "\n"
+            "Aborting installation!"
+        )
+        exit()
+
+    else:
+        print("Incorrect value! Try again…")
+        continue
+
+    break
+
+
+subprocess.call('passwd')
