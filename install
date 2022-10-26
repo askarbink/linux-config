@@ -99,7 +99,6 @@ print(
     f"Timezone: {timezone}\n"
     f"Dual boot: {dual_boot}\n"
     f"Desktop: {desktop}\n"
-
     f"Hostname: {hostname}\n"
     f"Username: {username}\n"
 )
