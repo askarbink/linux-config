@@ -3,6 +3,32 @@
 import os
 import subprocess
 
+
+def get_cpu_vendor() -> str:
+    """
+    Return values:
+    - “Authentic AMD”
+    - “GenuineIntel”
+    """
+
+    for i in open('/proc/cpuinfo').readlines():
+        if i.startswith('vendor_id'):
+            return i.split()[-1]
+
+
+def get_gpu_vendor() -> str:
+    """
+    Return values:
+    - “ATI”
+    - “Intel”
+    - “NVIDIA”
+    """
+
+    gpu_info = subprocess.getoutput('lspci | grep VGA')
+
+    return gpu_info.split()[4]
+
+
 print(
     "\n"
     "Warning!\n"
@@ -128,5 +154,37 @@ while True:
 
     break
 
+if False:
+    subprocess.run(
+        f'ln -sf /usr/share/zoneinfo/{timezone} /etc/localtime',
+        shell=True
+    )
+    subprocess.run('hwclock --systohc', shell=True)
 
-subprocess.call('passwd')
+    packages = [
+        'base-devel',
+        'efibootmgr',
+        'grub',
+        'linux-zen-headers',
+        'neovim',
+        'networkmanager'
+    ]
+
+    if False:
+        packages.append('amd-ucode')
+    elif False:
+        packages.append('intel-ucode')
+
+    if dual_boot == 'Yes':
+        packages += ['ntfs-3g', 'os-prober']
+
+    if False:
+        packages.append('bluez')
+    if False:
+        packages.append('cups')
+
+    subprocess.run(f'pacman -S {" ".join(packages)}', shell=True)
+    subprocess.run('', shell=True)
+
+
+# subprocess.call('passwd')
