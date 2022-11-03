@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+import subprocess
+
+from tools import system_info
+
+bootloader_id = input(
+    "\n"
+    'Bootloader ID (default="Linux Boot Manager"): '
+).strip()
+
+if not bootloader_id:
+    bootloader_id = "Linux Boot Manager"
+
+packages = ['efibootmgr', 'grub', 'networkmanager']
+
+if system_info.is_dual_boot():
+    # packages += ['dosfstools', 'mtools', 'ntfs-3g']
+    packages.append('ntfs-3g')
+
+# subprocess.run(f'pacman -S {" ".join(packages)}', shell=True)
+
+# subprocess.run(
+#     'grub-install '
+#     '--target=x86_64-efi '
+#     '--efi-directory=/boot '
+#     f'--bootloader-id="{bootloader_id}"',
+#     shell=True
+# )
+
+# subprocess.run('grub-mkconfig -o /boot/grub/grub.cfg', shell=True)
