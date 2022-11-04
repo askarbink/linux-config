@@ -102,16 +102,17 @@ print(
     f"Dual boot: {dual_boot}\n"
     f"Desktop: {desktop}\n"
     f"Hostname: {hostname}\n"
-    f"Username: {username}\n"
+    f"Username: {username}"
 )
 
 
 while True:
     confirmation = input(
+        "\n"
         "Proceed with installation? [Y/n]: "
     ).strip().lower()
 
-    if confirmation in ('y', 'yes'):
+    if confirmation in ('y', 'yes', ''):
         print(
             "\n"
             "Starting installation!"
