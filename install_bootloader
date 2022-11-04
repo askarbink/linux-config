@@ -14,7 +14,7 @@ repeat = False
 while True:
     if not repeat:
         bootloader_id = input(
-            "\nBootloader ID"
+            "\nBootloader ID "
             '(default="Linux Boot Manager", don’t use quotes): '
         ).strip()
     else:
@@ -75,7 +75,7 @@ subprocess.run('passwd', shell=True)
 
 packages = ['efibootmgr', 'grub', 'networkmanager']
 
-if system_info.is_dual_boot():
+if is_dual_boot:
     # packages += ['dosfstools', 'mtools', 'ntfs-3g']
     packages.append('ntfs-3g')
 
@@ -84,7 +84,7 @@ subprocess.run(f'pacman -S {" ".join(packages)}', shell=True)
 
 # Autostarting Network Manager
 
-subprocess.run('systemctl enable NetworkManager')
+subprocess.run('systemctl enable NetworkManager', shell=True)
 
 
 # GRUB Installation
@@ -100,22 +100,9 @@ subprocess.run(
 subprocess.run('grub-mkconfig -o /boot/grub/grub.cfg', shell=True)
 
 
-# Finishing Up
+# Success Message
 
-print("\nNow you need to reboot and then log in as “root” (it is the login).")
-
-while True:
-    confirmation = input(
-        "\nWould you like to reboot right now? [Y/n]: "
-    ).strip().lower()
-
-    if confirmation in ('y', 'yes', ''):
-        subprocess.run('reboot', shell=True)
-
-    elif confirmation in ('n', 'no'):
-        print("Okay, just type the “reboot” command when you’re ready.")
-        exit()
-
-    else:
-        print("Incorrect value! Try again…")
-        continue
+print(
+    "\nDone!\n"
+    "Now you need to reboot and then log in as “root” (it is the login)."
+)
