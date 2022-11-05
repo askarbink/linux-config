@@ -12,3 +12,11 @@ def warning() -> None:
     )
 
     print("\nMade by AskarBink.")
+
+
+def goodbye() -> None:
+    """
+    Prints the goodbye message.
+    """
+
+    print("\nHave a beautiful time!")

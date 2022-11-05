@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+pacman -Q python ||
+pacman -S python ||
+sudo pacman -S python
+
+python ./main.py
