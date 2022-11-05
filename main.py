@@ -1,6 +1,14 @@
 import subprocess
 
-from tools import shortcuts
+print(
+    "\nWarning!\n"
+    "This script is user-made and has been done to ease\n"
+    "the installation process of Arch Linux (especially for the creator).\n"
+    "Think twice before typing something!\n"
+    "The script cannot fix mistakes you make."
+)
+
+print("\nMade by AskarBink.")
 
 while True:
     choice = input(
@@ -11,7 +19,7 @@ while True:
     ).strip()
 
     if choice in ('0', ''):
-        shortcuts.goodbye()
+        print("\nHave a beautiful time!\n")
 
     elif choice == '1':
         import install_bootloader

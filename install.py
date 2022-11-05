@@ -3,14 +3,11 @@
 import os
 import subprocess
 
-from tools import system_info, shortcuts
-
-shortcuts.warning()
+from tools import shortcuts, system_info
 
 while True:
     timezone = input(
-        "\n"
-        "Timezone:\n"
+        "\nTimezone:\n"
         "(You can watch them in /usr/share/zoneinfo)\n"
     ).strip()
 
@@ -22,10 +19,7 @@ while True:
     break
 
 while True:
-    dual_boot = input(
-        "\n"
-        "Dual boot with Windows? [y/N]: "
-    ).strip().lower()
+    dual_boot = input("\nDual boot with Windows? [y/N]: ").strip().lower()
 
     if dual_boot in ('n', 'no', ''):
         dual_boot = 'No'
@@ -42,8 +36,7 @@ while True:
 
 while True:
     desktop = input(
-        "\n"
-        "Desktop:\n"
+        "\nDesktop:\n"
         "1) None\n"
         "2) i3\n"
         "3) GNOME\n"
@@ -67,20 +60,13 @@ while True:
     print(f"Selected: {desktop}")
     break
 
-hostname = input(
-    "\n"
-    "Hostname: "
-)
+hostname = input("\nHostname: ")
 
-username = input(
-    "\n"
-    "Username: "
-)
+username = input("\nUsername: ")
 
 
 print(
-    "\n"
-    "Overview:\n"
+    "\nOverview:\n"
     f"Timezone: {timezone}\n"
     f"Dual boot: {dual_boot}\n"
     f"Desktop: {desktop}\n"
@@ -91,21 +77,14 @@ print(
 
 while True:
     confirmation = input(
-        "\n"
-        "Proceed with installation? [Y/n]: "
+        "\nProceed with installation? [Y/n]: "
     ).strip().lower()
 
     if confirmation in ('y', 'yes', ''):
-        print(
-            "\n"
-            "Starting installation!"
-        )
+        print("\nStarting installation!")
 
     elif confirmation in ('n', 'no'):
-        print(
-            "\n"
-            "Aborting installation!"
-        )
+        print("\nHave a beautiful time!\n")
         exit()
 
     else:

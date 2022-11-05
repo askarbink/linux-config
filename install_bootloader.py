@@ -2,14 +2,10 @@
 
 import subprocess
 
-from tools import shortcuts, system_info
+from tools import system_info
 
 is_dual_boot = system_info.is_dual_boot()
 
-
-# Information
-
-shortcuts.warning()
 
 print("\nYou should run this script right after you did “arch-chroot”.")
 
@@ -59,7 +55,7 @@ while True:
         print("\nStarting installation!")
 
     elif confirmation in ('n', 'no'):
-        print("\nAborting installation!")
+        print("\nHave a beautiful time!\n")
         exit()
 
     else:
@@ -111,5 +107,5 @@ subprocess.run('grub-mkconfig -o /boot/grub/grub.cfg', shell=True)
 
 print(
     "\nDone!\n"
-    "Now you need to reboot and then log in as “root” (it is the login)."
+    "Now you need to reboot and then log in as “root” (it is the login).\n"
 )
