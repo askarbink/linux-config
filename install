@@ -3,26 +3,9 @@
 import os
 import subprocess
 
-from tools import system_info
+from tools import system_info, shortcuts
 
-print(
-    "\n"
-    "Warning!\n"
-    "This script is user-made and has been done to ease\n"
-    "the installation process of Arch Linux (especially for the creator).\n"
-    "Think twice before typing something!\n"
-    "The script cannot fix mistakes you make."
-)
-
-print(
-    "\n"
-    "You should run this script right after you did “arch-chroot”."
-)
-
-print(
-    "\n"
-    "Made by AskarBink."
-)
+shortcuts.warning()
 
 while True:
     timezone = input(

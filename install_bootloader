@@ -2,9 +2,16 @@
 
 import subprocess
 
-from tools import system_info
+from tools import shortcuts, system_info
 
 is_dual_boot = system_info.is_dual_boot()
+
+
+# Information
+
+shortcuts.warning()
+
+print("\nYou should run this script right after you did “arch-chroot”.")
 
 
 # Bootloader ID
