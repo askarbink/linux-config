@@ -33,16 +33,20 @@ def is_dual_boot() -> bool:
     Returns a Boolean value based on the presence of Windows partitions.
     """
 
-    partition_info = subprocess.getoutput('sudo fdisk -l')
-
     patterns = (
         ['100M', 'EFI', 'System'],
         ['16M', 'Microsoft', 'reserved'],
         ['Microsoft', 'basic', 'data']
     )
+
     matches = len(patterns) * [False]
 
-    for line in partition_info.split('\n'):
+    partition_info = subprocess.getstatusoutput('sudo fdisk -l')
+
+    if partition_info[0] != 0:
+        partition_info = subprocess.getstatusoutput('fdisk -l')
+
+    for line in partition_info[1].split('\n'):
         end = line.split()[-3:]
 
         for i in range(len(patterns)):
